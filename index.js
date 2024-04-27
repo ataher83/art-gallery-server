@@ -26,15 +26,6 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();  
 
-  //   app.post('/craft', async(req, res) => {
-  //     const newCraft = req.body
-  //     console.log(newCraft)
-  //     const result = await coffeeCollection.insertOne(newCoffee)
-  //     res.send(result) 
-  // })
-
-
-
 
   const craftCollection = client.db('craftDB').collection('craft');
   const userCollection = client.db('craftDB').collection('user');
