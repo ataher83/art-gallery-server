@@ -9,7 +9,7 @@ const port = process.env.PORT || 5000
 // app.use(cors())
 app.use(
   cors({
-      origin: ['http://localhost:5173', 'https://the-art-gallery-74571.web.app/'],
+      origin: ['http://localhost:5173', 'https://the-art-gallery-74571.web.app'],
       credentials: true,
   }),
 )
@@ -35,6 +35,21 @@ async function run() {
 
   const craftCollection = client.db('craftDB').collection('craft');
   const userCollection = client.db('craftDB').collection('user');
+  const catagoriesCollection = client.db('craftDB').collection('catagories');
+
+
+
+
+// ম্যানুয়ালি ডাটাবেজে কালেকশন করা ডাটা গেট করা 
+  app.get('/catagories', async(req, res) => {
+    const cursor = catagoriesCollection.find() 
+    const result = await cursor.toArray() 
+    res.send(result) 
+})
+
+
+
+
 
   app.get('/craft', async(req, res) => {
       const cursor = craftCollection.find() 
@@ -87,6 +102,17 @@ async function run() {
       const result = await craftCollection.deleteOne(query)
       res.send(result) 
   })
+
+
+// ম্যানুয়ালি ডাটাবেজে কালেকশন করা ডাটা গেট করা 
+//   app.get('/catagories', async(req, res) => {
+//     const cursor = catagoriesCollection.find() 
+//     const result = await cursor.toArray() 
+//     res.send(result) 
+// })
+
+
+
 
 
   //user related apis
